@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Did You Sleep Well?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffebee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+      -webkit-tap-highlight-color: transparent;
+    }
+    h1 {
+      color: #d14a7a;
+      font-size: 1.7rem;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      margin: 0 15px 20px;
+      line-height: 1.3;
+    }
+    .button {
+      padding: 14px 28px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin: 8px;
+      transition: all 0.2s ease;
+      min-width: 100px;
+    }
+    #yes-button {
+      background-color: #d14a7a;
+      color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+    #yes-button:active {
+      transform: scale(0.95);
+    }
+    #no-button {
+      background-color: #ff8a80;
+      color: white;
+      position: absolute;
+      cursor: not-allowed;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      touch-action: none;
+    }
+    .hidden {
+      display: none;
+    }
+    .valentine-message {
+      font-size: 1.3rem;
+      color: #d14a7a;
+      text-align: center;
+      margin: 15px;
+      padding: 0 15px;
+      font-weight: bold;
+      line-height: 1.5;
+      max-width: 90%;
+    }
+    .balloon {
+      position: absolute;
+      width: 60px;
+      height: 75px;
+      background: radial-gradient(circle, #ff4081, #d81b60);
+      border-radius: 50%;
+      clip-path: polygon(50% 0%, 80% 20%, 80% 80%, 50% 100%, 20% 80%, 20% 20%);
+      animation: float 6s infinite ease-in-out;
+      z-index: -1;
+    }
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.4rem;
+        margin: 0 10px 15px;
+      }
+      .button {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+        min-width: 90px;
+      }
+      .valentine-message {
+        font-size: 1.1rem;
+        margin: 10px;
+        line-height: 1.4;
+      }
+      .balloon {
+        width: 50px;
+        height: 65px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="content">
+    <h1 id="question">Did you sleep well, Mehrin🎀?</h1>
+    <button id="yes-button" class="button">Yes</button>
+    <button id="no-button" class="button">No</button>
+    <div id="valentine-message" class="valentine-message hidden">
+      I just wanted to say<br>
+      HAPPY VALENTINE'S DAY 💕💕<br><br>
+      I love you so much😞💞, Ik its been an online relationship texting everyday and I look forward to finding more ways to be close and I really appreciate the time we spent and most importantly counting many more💌.
+    </div>
+  </div>
+
+  <!-- Balloons -->
+  <div class="balloon" style="left: 5%; top: 95%;"></div>
+  <div class="balloon" style="left: 25%; top: 85%; animation-delay: 2s;"></div>
+  <div class="balloon" style="left: 35%; top: 90%; animation-delay: 4s;"></div>
+  <div class="balloon" style="left: 65%; top: 95%; animation-delay: 1s;"></div>
+  <div class="balloon" style="left: 75%; top: 80%; animation-delay: 3s;"></div>
+  <div class="balloon" style="left: 85%; top: 85%; animation-delay: 5s;"></div>
+
+  <script>
+    const noButton = document.getElementById('no-button');
+    const yesButton = document.getElementById('yes-button');
+    const valentineMessage = document.getElementById('valentine-message');
+    const question = document.getElementById('question');
+
+    function moveButton() {
+      const x = Math.random() * (window.innerWidth - noButton.offsetWidth - 20);
+      const y = Math.random() * (window.innerHeight - noButton.offsetHeight - 20);
+      noButton.style.left = `${x}px`;
+      noButton.style.top = `${y}px`;
+    }
+
+    // Mobile-friendly touch events
+    noButton.addEventListener('touchstart', moveButton);
+    noButton.addEventListener('mouseover', moveButton);
+
+    yesButton.addEventListener('click', () => {
+      question.classList.add('hidden');
+      valentineMessage.classList.remove('hidden');
+      yesButton.style.display = 'none';
+      noButton.style.display = 'none';
+    });
+
+    // Prevent zooming on mobile
+    document.addEventListener('gesturestart', (e) => e.preventDefault());
+  </script>
+</body>
+</html>
